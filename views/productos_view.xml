@@ -1,0 +1,61 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+    <record model="ir.ui.view" id="cooperativa.productos_form">
+      <field name="name">Coopetativa Productos Form</field>
+      <field name="model">cooperativa.productos_model</field>
+      <field name="arch" type="xml">
+        <form>
+          <header>
+            <button name="limpiaKilos" type="object" confirm="Desea los kilos de los productos" string="Elimina kilos" class="oe_highlight" />
+          </header>
+          <sheet>
+            <group>
+          
+              <field name="name"/>
+              <field name="descripcion"/>
+              <field name="precio"/>
+              <field name="kilosTotales"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="cooperativa.productos_tree">
+      <field name="name">Coopetativa Productos Tree</field>
+      <field name="model">cooperativa.productos_model</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="descripcion"/>
+          <field name="precio"/>
+          <field name="kilosTotales"/>
+        </tree>
+      </field>
+    </record>
+
+    <!-- actions opening views on models -->
+    <record model="ir.actions.act_window" id="cooperativa.action_window_productos">
+      <field name="name">Ventana de Productos</field>
+      <field name="res_model">cooperativa.productos_model</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- server action to the one above -->
+<!--
+    <record model="ir.actions.server" id="cooperativa.action_server">
+      <field name="name">cooperativa server</field>
+      <field name="model_id" ref="model_cooperativa_cooperativa"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+-->
+ </data>
+</odoo>

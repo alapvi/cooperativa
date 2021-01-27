@@ -1,0 +1,48 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+
+
+    <record model="ir.ui.view" id="cooperativa.list">
+      <field name="name">Cooperativa Socios Tree</field>
+      <field name="model">cooperativa.socios_model</field>
+      <field name="arch" type="xml">
+        <!-- <tree decoration-danger = "saldo == 0" decoration-warning = "saldo &lt; 1000" decoration-success = "saldo >= 1000" >
+        -->
+        <tree decoration-danger="len(registros)  &gt; 0">
+          <field name="id_socio" />
+          <field name="dni" />
+          <field name="name" />
+          <field name="apellidos" />
+          <field name="fechaAlta" />
+          <field name="saldo" />
+          <field name="registros" />
+
+        </tree>
+      </field>
+    </record>
+   
+    <!-- actions opening views on models -->
+    <record model="ir.actions.act_window" id="cooperativa.action_window_socios">
+      <field name="name">Ventana de Socios</field>
+      <field name="res_model">cooperativa.socios_model</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- server action to the one above -->
+    <!--
+    <record model="ir.actions.server" id="cooperativa.action_server">
+      <field name="name">cooperativa server</field>
+      <field name="model_id" ref="model_cooperativa_cooperativa"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+-->
+  </data>
+</odoo>

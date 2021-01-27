@@ -1,0 +1,21 @@
+<odoo>
+  <data>
+
+    <!-- Top menu item -->
+    <menuitem name="CoopEnguera " id="cooperativa.menu_root"/>
+    <!-- menu categories -->
+    <menuitem name="Gestion" id="cooperativa.Gestion" parent="cooperativa.menu_root"/>
+    <menuitem name="Campaña" id="cooperativa.Campanya" parent="cooperativa.menu_root"/>
+   
+    <!-- actions -->
+    <menuitem name="Socios" id="cooperativa.socios_list" parent="cooperativa.Gestion"
+              action="cooperativa.action_window_socios"/>
+    <menuitem name="Productos" id="cooperativa.productos_list" parent="cooperativa.Gestion"
+              action="cooperativa.action_window_productos"/>
+ 
+    <menuitem name="Registros" id="cooperativa.campaña_list" parent="cooperativa.Campanya"
+              action="cooperativa.action_window_campaña"/>
+ 
+
+  </data>
+</odoo>
