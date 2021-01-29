@@ -3,6 +3,7 @@
     <!-- explicit list view definition -->
 
 
+
     <record model="ir.ui.view" id="cooperativa.list">
       <field name="name">Cooperativa Socios Tree</field>
       <field name="model">cooperativa.socios_model</field>
@@ -16,9 +17,45 @@
           <field name="apellidos" />
           <field name="fechaAlta" />
           <field name="saldo" />
-          <field name="registros" />
+          <field name="registros" attrs="{'invisible':[('registros', 'in',[[6, False, []]] )]}">  
+            <tree>
+              <field name="campaña"/>
+              <field name="fecha"/>
+              <field name="producto"/>
+              <field name="kilos"/>
+              
+            </tree>
+          </field>  
 
         </tree>
+      </field>
+    </record>
+   
+    <record model="ir.ui.view" id="cooperativa.socios_Form">
+      <field name="name">Cooperativa Socios Form</field>
+      <field name="model">cooperativa.socios_model</field>
+      <field name="arch" type="xml">
+        <form >
+          <sheet>
+            <group>
+              <field name="id_socio" />
+              <field name="dni" />
+              <field name="name" />
+              <field name="apellidos" />
+              <field name="fechaAlta" />
+              <field name="saldo" />
+              <field name="registros" attrs="{'invisible': [('registros', '=', [])] }">  
+                <tree>
+                  <field name="campaña"/>
+                  <field name="fecha"/>
+                  <field name="producto"/>
+                  <field name="kilos"/>
+                  
+                </tree>
+              </field>
+            </group>  
+        </sheet>
+        </form>
       </field>
     </record>
    

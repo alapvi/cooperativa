@@ -18,7 +18,7 @@ class productos_model(models.Model):
                raise ValueError("Precio de producto erróneo!")
 
      def limpiaKilos(self):
-          productos = self.search([])
+          productos = self.search([("kilosTotales",">","0")])
           for rec in productos:
                rec.kilosTotales = 0
 
