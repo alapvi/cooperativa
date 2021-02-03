@@ -10,20 +10,50 @@
             <button name="actualizaSaldos" type="object" confirm="Desea actualizar los saldos de los socios" string="Actualiza Saldos" class="oe_highlight" />
             <button name="actualizaKilos" type="object" confirm="Desea actualizar los kilos registrados" string="Actualiza Kilos" class="oe_highlight" />
             <button name="eliminaHistorial" type="object" confirm="Desea eliminar el historial de registros" string="Elimina Historial" class="oe_highlight" />
-            
+
           </header>
           <sheet>
             <group>
-              <field name="campaña"/>
-              <field name="fecha"/>
-              <field name="socio"/>
-              <field name="producto"/>
-              <field name="kilos"/>
+              <field name="campaña" />
+              <field name="fecha" />
+              <field name="socio" />
+              <field name="producto" />
+              <field name="kilos" />
             </group>
           </sheet>
-          
+
         </form>
       </field>
+    </record>
+
+    <record model="ir.ui.view" id="cooperativa.campaña_grafico">
+      <field name="name">Gráfico de Campaña</field>
+      <field name="model">cooperativa.campanya_model</field>
+      <field name="arch" type="xml">
+        <graph type="bar" stacked="True">
+          <field name="socio" />
+          <field name="producto" />
+          <field name="fecha" type="row" interval="month" />
+          <field name="kilos" type="measure" />
+        </graph>
+
+      </field>
+
+    </record>
+
+    <record model="ir.ui.view" id="cooperativa.campaña_pivot">
+      <field name="name">Pivot de Campaña</field>
+      <field name="model">cooperativa.campanya_model</field>
+      <field name="arch" type="xml">
+        <pivot string="Pivot de Campañas">
+          <field name="socio" />
+          <field name="producto" />
+          <field name="fecha" type="row" interval="month" />
+          <field name="kilos" type="measure" />
+        </pivot>
+
+      </field>
+
     </record>
 
     <record model="ir.ui.view" id="cooperativa.campanya_model_search">
@@ -31,16 +61,16 @@
       <field name="model">cooperativa.campanya_model</field>
       <field name="arch" type="xml">
         <search>
-          <field name="fecha"/>
-          <field name="socio"/>
-          <field name="producto"/>
-          <field name="kilos"/>
+          <field name="fecha" />
+          <field name="socio" />
+          <field name="producto" />
+          <field name="kilos" />
           <filter string="Historico de Registros Anual" name="HistAnualReg" domain="[('active','=',False)]" />
-          <group expand="0" string="Group By">                                            
+          <group expand="0" string="Group By">
             <filter string="Socio" name="socio" context="{'group_by': 'socio'}"></filter>
-            <filter string="Productos" name="producto" context="{'group_by': 'producto'}"></filter>                                                        
-          </group>   
-        
+            <filter string="Productos" name="producto" context="{'group_by': 'producto'}"></filter>
+          </group>
+
         </search>
       </field>
 
@@ -51,14 +81,28 @@
       <field name="model">cooperativa.campanya_model</field>
       <field name="arch" type="xml">
         <tree>
-          <field name="campaña"/>
-          <field name="fecha"/>
-          <field name="socio"/>
-          <field name="producto"/>
-          <field name="kilos"/>
-          
+          <field name="campaña" />
+          <field name="fecha" />
+          <field name="socio" />
+          <field name="producto" />
+          <field name="kilos" />
+
         </tree>
       </field>
+    </record>
+
+    <record model="ir.ui.view" id="cooperativa.calendar_campanya">
+      <field name="name">Calendario de Campañas</field>
+      <field name="model">cooperativa.campanya_model</field>
+      <field name="arch" type="xml">
+        <calendar date_start="fecha" color="socio" mode="week" event_open_popup="True" form_view_id="cooperativa.campaña_form" quick_add="false">
+          <field name="socio" />
+          <field name="producto" />
+          <field name="kilos" />
+        </calendar>
+
+      </field>
+
     </record>
 
 
@@ -66,11 +110,11 @@
     <record model="ir.actions.act_window" id="cooperativa.action_window_campaña">
       <field name="name">Ventana de Campaña</field>
       <field name="res_model">cooperativa.campanya_model</field>
-      <field name="view_mode">tree,form</field>
+      <field name="view_mode">tree,form,calendar,graph,pivot</field>
     </record>
 
     <!-- server action to the one above -->
-<!--
+    <!--
     <record model="ir.actions.server" id="cooperativa.action_server">
       <field name="name">cooperativa server</field>
       <field name="model_id" ref="model_cooperativa_cooperativa"/>
@@ -84,5 +128,5 @@
       </field>
     </record>
 -->
- </data>
+  </data>
 </odoo>

@@ -36,8 +36,9 @@ class campanya_model(models.Model):
           for rec in historialSocios:
                rec.unlink()
 
+"""
+     @api.onchange("socio")
+     def updateProduct(self):
+          return {'domain':{'producto':[('name','=','Oliva')]}}
 
-
-
-
-
+"""
